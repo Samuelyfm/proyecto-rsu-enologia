@@ -174,7 +174,42 @@
     }
 }
         
-
+@media (max-width: 768px) {
+    .carousel-item {
+        height: 450px;
+    }
+    
+    /* QUITAR FONDO EN MÓVILES */
+    .carousel-caption {
+        background: transparent !important;
+        backdrop-filter: none !important;
+        border: none !important;
+        padding: 20px 15px !important;
+        bottom: 30px !important;
+    }
+    
+    .carousel-caption h2 {
+        font-size: 1.8rem !important;
+        text-shadow: 3px 3px 10px rgba(0,0,0,0.9), 
+                     0 0 20px rgba(0,0,0,0.8),
+                     0 0 30px rgba(114, 47, 55, 0.5) !important;
+    }
+    
+    .carousel-caption p {
+        font-size: 1rem !important;
+        text-shadow: 2px 2px 8px rgba(0,0,0,0.9),
+                     0 0 15px rgba(0,0,0,0.7) !important;
+    }
+    
+    /* CENTRAR BADGE EN MÓVILES */
+    .carousel-caption .badge {
+        font-size: 0.75rem !important;
+        padding: 6px 12px !important;
+        display: block !important;
+        width: fit-content !important;
+        margin: 0 auto 10px auto !important;
+    }
+}
 
 /* GALERÍA CARRUSEL */
 .gallery-section {
@@ -1562,6 +1597,7 @@
 </body>
 
 </html>
+
 
 
 
