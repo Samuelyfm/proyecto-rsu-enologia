@@ -1,0 +1,1520 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proyecto RSU - Diagnóstico Vitivinícola Comunitario</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --wine-red: #722f37;
+            --wine-dark: #4a1e23;
+            --wine-light: #9b4a52;
+            --grape-purple: #6b3fa0;
+            --vineyard-green: #5a7d3c;
+            --earth-brown: #8b6f47;
+            --light-cream: #f8f4f0;
+            --gold-accent: #c9a961;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: #2c2c2c;
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3, h4, h5 {
+            font-family: 'Playfair Display', serif;
+        }
+        
+        /* Navbar */
+        .navbar {
+            background: linear-gradient(135deg, var(--wine-dark), var(--wine-red));
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+            padding: 1rem 0;
+            transition: all 0.3s ease;
+        }
+        
+        .navbar-brand {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            font-size: 1.6rem;
+            color: white !important;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .navbar-brand i {
+            color: var(--gold-accent);
+        }
+        
+        .navbar-nav .nav-link {
+            color: rgba(255,255,255,0.9) !important;
+            font-weight: 500;
+            margin: 0 15px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .navbar-nav .nav-link:hover {
+            color: var(--gold-accent) !important;
+            transform: translateY(-2px);
+        }
+        
+        .navbar-nav .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gold-accent);
+            transition: width 0.3s ease;
+        }
+        
+        .navbar-nav .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        /* Carrusel Principal */
+        .hero-carousel {
+            margin-top: 76px;
+        }
+        
+        .carousel-item {
+            height: 650px;
+            position: relative;
+        }
+        
+        .carousel-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.65);
+        }
+        
+        .carousel-caption {
+            background: linear-gradient(135deg, rgba(114, 47, 55, 0.9), rgba(107, 63, 160, 0.85));
+            backdrop-filter: blur(15px);
+            padding: 40px;
+            border-radius: 20px;
+            bottom: 80px;
+            border: 2px solid rgba(201, 169, 97, 0.3);
+        }
+        
+        .carousel-caption h2 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.5);
+            animation: fadeInUp 1s ease;
+            margin-bottom: 15px;
+        }
+        
+        .carousel-caption p {
+            font-size: 1.3rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        
+        .carousel-caption .badge {
+            background: var(--gold-accent);
+            color: var(--wine-dark);
+            padding: 8px 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-top: 10px;
+        }
+        
+
+
+/* GALERÍA CARRUSEL */
+.gallery-section {
+    padding: 100px 0;
+    background: linear-gradient(180deg, #ffffff 0%, var(--light-cream) 100%);
+    position: relative;
+}
+
+.gallery-carousel {
+    max-width: 1000px;
+    margin: 0 auto;
+    border-radius: 30px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(114, 47, 55, 0.25);
+    position: relative;
+}
+
+.gallery-slide {
+    position: relative;
+    background: var(--wine-dark);
+}
+
+.gallery-slide img {
+    width: 100%;
+    height: 600px;
+    object-fit: cover;
+    display: block;
+    filter: brightness(0.9);
+}
+
+.gallery-caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(114, 47, 55, 0.95) 0%, rgba(114, 47, 55, 0.85) 60%, transparent 100%);
+    padding: 50px 40px 40px;
+    color: white;
+    text-align: center;
+}
+
+.gallery-caption h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+    color: var(--gold-accent);
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+.gallery-caption p {
+    font-size: 1.1rem;
+    margin: 0;
+    opacity: 0.95;
+    line-height: 1.6;
+}
+
+/* Flechas grandes y visibles */
+.gallery-control-prev,
+.gallery-control-next {
+    width: 80px;
+    height: 80px;
+    top: 50%;
+    transform: translateY(-50%);
+    opacity: 1 !important;
+    z-index: 10;
+}
+
+.gallery-control-prev {
+    left: 30px;
+}
+
+.gallery-control-next {
+    right: 30px;
+}
+
+.gallery-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 70px;
+    height: 70px;
+    background: linear-gradient(135deg, var(--wine-red), var(--grape-purple));
+    border-radius: 50%;
+    border: 3px solid var(--gold-accent);
+    box-shadow: 0 8px 25px rgba(114, 47, 55, 0.5);
+    transition: all 0.3s ease;
+}
+
+.gallery-arrow i {
+    font-size: 1.8rem;
+    color: white;
+}
+
+.gallery-control-prev:hover .gallery-arrow,
+.gallery-control-next:hover .gallery-arrow {
+    background: linear-gradient(135deg, var(--gold-accent), var(--wine-light));
+    transform: scale(1.15);
+    box-shadow: 0 12px 35px rgba(201, 169, 97, 0.6);
+    border-color: white;
+}
+
+.gallery-control-prev:hover .gallery-arrow {
+    animation: slideLeft 0.6s ease infinite;
+}
+
+.gallery-control-next:hover .gallery-arrow {
+    animation: slideRight 0.6s ease infinite;
+}
+
+@keyframes slideLeft {
+    0%, 100% { transform: translateX(0); }
+    50% { transform: translateX(-8px); }
+}
+
+@keyframes slideRight {
+    0%, 100% { transform: translateX(0); }
+    50% { transform: translateX(8px); }
+}
+
+/* Indicadores personalizados */
+.gallery-indicators {
+    bottom: 20px;
+    z-index: 10;
+}
+
+.gallery-indicators button {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.5);
+    border: 2px solid var(--gold-accent);
+    margin: 0 6px;
+    transition: all 0.3s ease;
+}
+
+.gallery-indicators button.active {
+    background: var(--gold-accent);
+    width: 40px;
+    border-radius: 10px;
+    transform: scale(1.2);
+}
+
+.gallery-indicators button:hover {
+    background: var(--gold-accent);
+    transform: scale(1.15);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .gallery-slide img {
+        height: 450px;
+    }
+    
+    .gallery-caption {
+        padding: 30px 20px 25px;
+    }
+    
+    .gallery-caption h4 {
+        font-size: 1.5rem;
+        margin-bottom: 10px;
+    }
+    
+    .gallery-caption p {
+        font-size: 0.95rem;
+    }
+    
+    .gallery-control-prev,
+    .gallery-control-next {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .gallery-arrow {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .gallery-arrow i {
+        font-size: 1.3rem;
+    }
+    
+    .gallery-control-prev {
+        left: 15px;
+    }
+    
+    .gallery-control-next {
+        right: 15px;
+    }
+}
+
+@media (max-width: 576px) {
+    .gallery-slide img {
+        height: 350px;
+    }
+    
+    .gallery-carousel {
+        border-radius: 20px;
+    }
+}
+
+
+
+        
+        /* Sección de Cards DBO */
+        .dbo-section {
+            padding: 100px 0;
+            background: linear-gradient(180deg, var(--light-cream) 0%, #ffffff 100%);
+            position: relative;
+        }
+        
+        .dbo-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('data:image/svg+xml,<svg width="60" height="60" xmlns="http://www.w3.org/2000/svg"><path d="M30 0L35 20L30 40L25 20Z" fill="%23722f3710"/></svg>');
+            opacity: 0.05;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .section-title h2 {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--wine-dark);
+            margin-bottom: 20px;
+        }
+        
+        .section-title p {
+            font-size: 1.2rem;
+            color: #666;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .section-title::after {
+            content: '🍇';
+            display: block;
+            font-size: 2rem;
+            margin: 25px auto;
+        }
+        
+        .dbo-card {
+            background: white;
+            border-radius: 25px;
+            overflow: hidden;
+            box-shadow: 0 15px 50px rgba(114, 47, 55, 0.15);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            height: 100%;
+            cursor: pointer;
+            border: 3px solid transparent;
+            position: relative;
+        }
+        
+        .dbo-card:hover {
+            transform: translateY(-20px) scale(1.02);
+            box-shadow: 0 25px 70px rgba(114, 47, 55, 0.25);
+            border-color: var(--gold-accent);
+        }
+        
+        .dbo-card-header {
+            background: linear-gradient(135deg, var(--wine-red), var(--grape-purple));
+            padding: 60px 30px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .dbo-card-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: pulse 4s infinite;
+        }
+        
+        .dbo-card-icon {
+            font-size: 4.5rem;
+            color: white;
+            position: relative;
+            z-index: 1;
+            text-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+        
+        .dbo-card-body {
+            padding: 40px 30px;
+        }
+        
+        .dbo-card-body h4 {
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--wine-dark);
+            font-size: 1.5rem;
+        }
+        
+        .dbo-card-body p {
+            color: #555;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+        
+        .dbo-card-body ul {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0;
+        }
+        
+        .dbo-card-body ul li {
+            padding: 8px 0;
+            color: #666;
+            position: relative;
+            padding-left: 25px;
+        }
+        
+        .dbo-card-body ul li::before {
+            content: '🍷';
+            position: absolute;
+            left: 0;
+            font-size: 1rem;
+        }
+        
+        .btn-dbo {
+            background: linear-gradient(135deg, var(--wine-red), var(--grape-purple));
+            color: white;
+            border: none;
+            padding: 14px 35px;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            width: 100%;
+            margin-top: 20px;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .btn-dbo:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(114, 47, 55, 0.4);
+            background: linear-gradient(135deg, var(--wine-dark), var(--wine-red));
+        }
+        
+        /* Carrusel de Equipo */
+        .team-section {
+            padding: 100px 0;
+            background: white;
+            position: relative;
+        }
+        
+        .team-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 300px;
+            background: linear-gradient(180deg, var(--light-cream) 0%, transparent 100%);
+        }
+        
+        .team-member {
+            text-align: center;
+            padding: 30px;
+            position: relative;
+        }
+        
+        .team-member-img {
+            width: 220px;
+            height: 220px;
+            border-radius: 50%;
+            margin: 0 auto 25px;
+            overflow: hidden;
+            border: 6px solid var(--wine-red);
+            box-shadow: 0 15px 40px rgba(114, 47, 55, 0.3);
+            transition: all 0.4s ease;
+            position: relative;
+        }
+        
+        .team-member-img::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(114, 47, 55, 0.3), transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .team-member:hover .team-member-img {
+            transform: scale(1.1) rotate(5deg);
+            border-color: var(--gold-accent);
+        }
+        
+        .team-member:hover .team-member-img::after {
+            opacity: 1;
+        }
+        
+        .team-member-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .team-member h5 {
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--wine-dark);
+            font-size: 1.3rem;
+        }
+        
+        .team-member .role {
+            color: var(--wine-red);
+            font-weight: 600;
+            font-size: 1rem;
+            margin-bottom: 8px;
+        }
+        
+        .team-member p {
+            color: #666;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        
+        .team-member .specialty {
+            display: inline-block;
+            background: var(--light-cream);
+            color: var(--wine-dark);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            margin-top: 10px;
+            border: 1px solid var(--gold-accent);
+        }
+        
+        /* Contador de Impacto */
+        .impact-section {
+            background: linear-gradient(135deg, var(--wine-dark), var(--wine-red), var(--grape-purple));
+            padding: 80px 0;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .impact-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="30" fill="rgba(255,255,255,0.03)"/></svg>');
+            animation: moveBackground 20s linear infinite;
+        }
+        
+        @keyframes moveBackground {
+            0% { transform: translateX(0) translateY(0); }
+            100% { transform: translateX(100px) translateY(100px); }
+        }
+        
+        .impact-box {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 25px;
+            padding: 50px 40px;
+            border: 2px solid rgba(255,255,255,0.2);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .impact-icon {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            color: var(--gold-accent);
+            text-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+        
+        .impact-number {
+            font-size: 4.5rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            text-shadow: 3px 3px 15px rgba(0,0,0,0.4);
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .impact-label {
+            font-size: 1.3rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--gold-accent);
+        }
+        
+        .impact-description {
+            margin-top: 15px;
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+        
+        /* Footer */
+        .footer {
+            background: var(--wine-dark);
+            color: white;
+            padding: 70px 0 30px;
+            position: relative;
+        }
+        
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--wine-red), var(--gold-accent), var(--grape-purple));
+        }
+        
+        .footer h5 {
+            font-weight: 700;
+            margin-bottom: 25px;
+            color: var(--gold-accent);
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+        }
+        
+        .footer p, .footer ul {
+            color: #d1d5db;
+            line-height: 1.9;
+        }
+        
+        .footer ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .footer ul li {
+            margin-bottom: 12px;
+            padding-left: 0;
+        }
+        
+        .footer ul li i {
+            margin-right: 12px;
+            color: var(--gold-accent);
+            width: 20px;
+        }
+        
+        .university-logo {
+            width: 180px;
+            height: auto;
+            margin-bottom: 25px;
+            filter: brightness(0.95);
+            background: white;
+            padding: 15px;
+            border-radius: 15px;
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            margin-top: 50px;
+            padding-top: 25px;
+            text-align: center;
+            color: #9ca3af;
+        }
+        
+        .footer-bottom p {
+            margin: 5px 0;
+            color: #9ca3af;
+        }
+        
+        .social-links {
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            display: inline-block;
+            width: 45px;
+            height: 45px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            line-height: 45px;
+            text-align: center;
+            margin: 0 8px;
+            color: white;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        
+        .social-links a:hover {
+            background: var(--gold-accent);
+            border-color: white;
+            transform: translateY(-5px);
+        }
+        
+        /* Animaciones */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 0.5;
+            }
+            50% {
+                transform: scale(1.5);
+                opacity: 0.3;
+            }
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .carousel-item {
+                height: 450px;
+            }
+            
+            .carousel-caption h2 {
+                font-size: 2rem;
+            }
+            
+            .carousel-caption p {
+                font-size: 1rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2.2rem;
+            }
+            
+            .impact-number {
+                font-size: 3rem;
+            }
+            
+            .team-member-img {
+                width: 180px;
+                height: 180px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 1. NAVBAR FIJO -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="fas fa-wine-bottle"></i>
+                Proyecto RSU Vitivinícola
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#inicio">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#diagnostico">Diagnóstico DBO</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#equipo">Equipo</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#impacto">Impacto</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contacto">Contacto</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 2. CARRUSEL DE IMÁGENES -->
+    <section id="inicio" class="hero-carousel">
+        <div id="mainCarousel" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="0" class="active"></button>
+                <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="1"></button>
+                <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="2"></button>
+                <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="3"></button>
+                <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="4"></button>
+            </div>
+            
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="img/Imagen1.jpg" alt="Viñedos">
+                    <div class="carousel-caption">
+                        <span class="badge">Responsabilidad Social Universitaria-UPSJB-EPIEV</span>
+                        <h2>Proyecto de Intervención Social</h2>
+                        <p class="lead">Fortaleciendo comunidades vitivinícolas a través del DBO</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="img/Imagen2.jpg" alt="Cosecha de Uvas">
+                    <div class="carousel-caption">
+                        <span class="badge">Monitoreo participativo</span>
+                        <h2>Desarrollo Sostenible del Sector</h2>
+                        <p class="lead">Análisis de agua de riego</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="img/Imagen3.jpg" alt="Bodega Artesanal">
+                    <div class="carousel-caption">
+                        <span class="badge">Ingeniería en Enología</span>
+                        <h2>Uso de sensores low cost - Viticultura</h2>
+                        <p class="lead">Transferencia de conocimiento técnico a la comunidad</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="img/Imagen4.jpg" alt="Bodega Artesanal">
+                    <div class="carousel-caption">
+                        <span class="badge">Ingeniería en Enología</span>
+                        <h2>Santa Cruz de Flores - Mala - Cañete</h2>
+                        <p class="lead">Soporte social de parte de la UPSJB</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="img/Imagen5.jpg" alt="Bodega Artesanal">
+                    <div class="carousel-caption">
+                        <span class="badge">Ingeniería en Enología</span>
+                        <h2>Facultad de Ingenierías - EPIEV</h2>
+                        <p class="lead">Conocimientos compartidos a la comunidad</p>
+                    </div>
+                </div>
+            </div>
+            
+            <button class="carousel-control-prev" type="button" data-bs-target="#mainCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon"></span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#mainCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon"></span>
+            </button>
+        </div>
+    </section>
+
+   <!-- GALERÍA DE FOTOS DEL PROYECTO  -->
+<section id="galeria" class="gallery-section">
+    <div class="container">
+        <div class="section-title">
+            <h2>Galería del Proyecto</h2>
+            <p>Registro fotográfico de nuestras actividades de intervención social en la comunidad vitivinícola</p>
+        </div>
+        
+        <div id="galleryCarousel" class="carousel slide gallery-carousel" data-bs-ride="false">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <div class="gallery-slide">
+                        <img src="img/gal1.jpg" alt="Capacitación a Productores">
+                    </div>
+                </div>
+                
+                <div class="carousel-item">
+                    <div class="gallery-slide">
+                        <img src="img/gal2.jpg" alt="Capacitación a Productores">
+                        
+                    </div>
+                </div>
+                
+                <div class="carousel-item">
+                    <div class="gallery-slide">
+                        <img src="img/gal3.jpg" alt="Monitoreo de Calidad de Agua">
+                    </div>
+                </div>
+                
+                <div class="carousel-item">
+                    <div class="gallery-slide">
+                        <img src="img/gal4.jpg" alt="Trabajo Comunitario">
+                    </div>
+                </div>
+                
+                <div class="carousel-item">
+                    <div class="gallery-slide">
+                        <img src="img/gal5.jpg" alt="Tecnología en el Campo">
+                    </div>
+                </div>
+                
+                <div class="carousel-item">
+                    <div class="gallery-slide">
+                        <img src="img/gal6.jpg" alt="Resultados y Seguimiento">
+                    </div>
+                </div>
+
+                <div class="carousel-item">
+                    <div class="gallery-slide">
+                        <img src="img/gal7.jpg" alt="Resultados y Seguimiento">
+                    </div>
+                </div>
+
+                <div class="carousel-item">
+                    <div class="gallery-slide">
+                        <img src="img/gal8.jpg" alt="Resultados y Seguimiento">
+                    </div>
+                </div>
+
+                <div class="carousel-item">
+                    <div class="gallery-slide">
+                        <img src="img/gal9.jpg" alt="Resultados y Seguimiento">
+                    </div>
+                </div>
+
+                <div class="carousel-item">
+                    <div class="gallery-slide">
+                        <img src="img/gal10.jpg" alt="Resultados y Seguimiento">
+                    </div>
+                </div>
+
+                <div class="carousel-item">
+                    <div class="gallery-slide">
+                        <img src="img/gal11.jpg" alt="Resultados y Seguimiento">
+                    </div>
+                </div>
+
+                <div class="carousel-item">
+                    <div class="gallery-slide">
+                        <img src="img/gal12.jpg" alt="Resultados y Seguimiento">
+                    </div>
+                </div>
+
+                <div class="carousel-item">
+                    <div class="gallery-slide">
+                        <img src="img/gal13.jpg" alt="Resultados y Seguimiento">
+                    </div>
+                </div>
+
+                <div class="carousel-item">
+                    <div class="gallery-slide">
+                        <img src="img/gal14.jpg" alt="Resultados y Seguimiento">
+                    </div>
+                </div>
+
+                <div class="carousel-item">
+                    <div class="gallery-slide">
+                        <img src="img/gal15.jpg" alt="Resultados y Seguimiento">
+                    </div>
+                </div>
+
+                <div class="carousel-item">
+                    <div class="gallery-slide">
+                        <img src="img/gal16.jpg" alt="Resultados y Seguimiento">
+                    </div>
+                </div>
+
+                <div class="carousel-item">
+                    <div class="gallery-slide">
+                        <img src="img/gal17.jpg" alt="Resultados y Seguimiento">
+                    </div>
+                </div>
+
+                <div class="carousel-item">
+                    <div class="gallery-slide">
+                        <img src="img/gal18.jpg" alt="Resultados y Seguimiento">
+                    </div>
+                </div>
+
+                <div class="carousel-item">
+                    <div class="gallery-slide">
+                        <img src="img/gal19.jpg" alt="Resultados y Seguimiento">
+                    </div>
+                </div>
+
+                <div class="carousel-item">
+                    <div class="gallery-slide">
+                        <img src="img/gal20.jpg" alt="Resultados y Seguimiento">
+                    </div>
+                </div>
+
+                <div class="carousel-item">
+                    <div class="gallery-slide">
+                        <img src="img/gal21.jpg" alt="Resultados y Seguimiento">
+                    </div>
+                </div>
+
+                <div class="carousel-item">
+                    <div class="gallery-slide">
+                        <img src="img/gal22.jpg" alt="Resultados y Seguimiento">
+                    </div>
+                </div>
+
+                <div class="carousel-item">
+                    <div class="gallery-slide">
+                        <img src="img/gal23.jpg" alt="Resultados y Seguimiento">
+                    </div>
+                </div>
+
+                <div class="carousel-item">
+                    <div class="gallery-slide">
+                        <img src="img/gal24.jpg" alt="Resultados y Seguimiento">
+                    </div>
+                </div>
+
+                <div class="carousel-item">
+                    <div class="gallery-slide">
+                        <img src="img/gal25.jpg" alt="Resultados y Seguimiento">
+                    </div>
+                </div>
+
+                <div class="carousel-item">
+                    <div class="gallery-slide">
+                        <img src="img/gal26.jpg" alt="Resultados y Seguimiento">
+                    </div>
+                </div>
+
+                <div class="carousel-item">
+                    <div class="gallery-slide">
+                        <img src="img/gal27.jpg" alt="Resultados y Seguimiento">
+                    </div>
+                </div>
+
+                <div class="carousel-item">
+                    <div class="gallery-slide">
+                        <img src="img/gal28.jpg" alt="Resultados y Seguimiento">
+                    </div>
+                </div>
+
+                <div class="carousel-item">
+                    <div class="gallery-slide">
+                        <img src="img/gal29.jpg" alt="Resultados y Seguimiento">
+                    </div>
+                </div>
+
+                <div class="carousel-item">
+                    <div class="gallery-slide">
+                        <img src="img/gal30.jpg" alt="Resultados y Seguimiento">
+                    </div>
+                </div>
+
+                <div class="carousel-item">
+                    <div class="gallery-slide">
+                        <img src="img/gal31.jpg" alt="Resultados y Seguimiento">
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Flechas de navegación -->
+            <button class="carousel-control-prev gallery-control-prev" type="button" data-bs-target="#galleryCarousel" data-bs-slide="prev">
+                <span class="gallery-arrow">
+                    <i class="fas fa-chevron-left"></i>
+                </span>
+                <span class="visually-hidden">Anterior</span>
+            </button>
+            <button class="carousel-control-next gallery-control-next" type="button" data-bs-target="#galleryCarousel" data-bs-slide="next">
+                <span class="gallery-arrow">
+                    <i class="fas fa-chevron-right"></i>
+                </span>
+                <span class="visually-hidden">Siguiente</span>
+            </button>
+            
+            <!-- Indicadores -->
+            <div class="carousel-indicators gallery-indicators">
+                <button type="button" data-bs-target="#galleryCarousel" data-bs-slide-to="0" class="active"></button>
+                <button type="button" data-bs-target="#galleryCarousel" data-bs-slide-to="1"></button>
+                <button type="button" data-bs-target="#galleryCarousel" data-bs-slide-to="2"></button>
+                <button type="button" data-bs-target="#galleryCarousel" data-bs-slide-to="3"></button>
+                <button type="button" data-bs-target="#galleryCarousel" data-bs-slide-to="4"></button>
+                <button type="button" data-bs-target="#galleryCarousel" data-bs-slide-to="5"></button>
+                <button type="button" data-bs-target="#galleryCarousel" data-bs-slide-to="6"></button>
+                <button type="button" data-bs-target="#galleryCarousel" data-bs-slide-to="7"></button>
+                <button type="button" data-bs-target="#galleryCarousel" data-bs-slide-to="8"></button>
+                <button type="button" data-bs-target="#galleryCarousel" data-bs-slide-to="9"></button>
+                <button type="button" data-bs-target="#galleryCarousel" data-bs-slide-to="10"></button>
+                <button type="button" data-bs-target="#galleryCarousel" data-bs-slide-to="11"></button>
+                <button type="button" data-bs-target="#galleryCarousel" data-bs-slide-to="12"></button>
+                <button type="button" data-bs-target="#galleryCarousel" data-bs-slide-to="13"></button>
+                <button type="button" data-bs-target="#galleryCarousel" data-bs-slide-to="14"></button>
+                <button type="button" data-bs-target="#galleryCarousel" data-bs-slide-to="15"></button>
+                <button type="button" data-bs-target="#galleryCarousel" data-bs-slide-to="16"></button>
+                <button type="button" data-bs-target="#galleryCarousel" data-bs-slide-to="17"></button>
+                <button type="button" data-bs-target="#galleryCarousel" data-bs-slide-to="18"></button>
+                <button type="button" data-bs-target="#galleryCarousel" data-bs-slide-to="19"></button>
+                <button type="button" data-bs-target="#galleryCarousel" data-bs-slide-to="20"></button>
+                <button type="button" data-bs-target="#galleryCarousel" data-bs-slide-to="21"></button>
+                <button type="button" data-bs-target="#galleryCarousel" data-bs-slide-to="22"></button>
+                <button type="button" data-bs-target="#galleryCarousel" data-bs-slide-to="23"></button>
+                <button type="button" data-bs-target="#galleryCarousel" data-bs-slide-to="24"></button>
+                <button type="button" data-bs-target="#galleryCarousel" data-bs-slide-to="25"></button>
+                <button type="button" data-bs-target="#galleryCarousel" data-bs-slide-to="26"></button>
+                <button type="button" data-bs-target="#galleryCarousel" data-bs-slide-to="27"></button>
+                <button type="button" data-bs-target="#galleryCarousel" data-bs-slide-to="28"></button>
+                <button type="button" data-bs-target="#galleryCarousel" data-bs-slide-to="29"></button>
+                <button type="button" data-bs-target="#galleryCarousel" data-bs-slide-to="30"></button>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <!-- 3. CARDS DBO (Diagnóstico Basado en Objetivos) -->
+    <section id="diagnostico" class="dbo-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Diagnóstico Basado en Objetivos (DBO)</h2>
+                <p>Nuestro proyecto se fundamenta en tres pilares estratégicos para el desarrollo vitivinícola comunitario</p>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6">
+                    <div class="dbo-card">
+                        <div class="dbo-card-header">
+                            <div class="dbo-card-icon">
+                                <i class="fas fa-seedling"></i>
+                            </div>
+                        </div>
+                        <div class="dbo-card-body">
+                            <h4>Diagnóstico Productivo</h4>
+                            <p>Análisis integral de las condiciones actuales de producción vitivinícola en la comunidad.</p>
+                            <ul>
+                                <li>Evaluación de suelos y microclimas</li>
+                                <li>Variedades de uva cultivadas</li>
+                                <li>Prácticas agrícolas utilizadas</li>
+                                <li>Recursos disponibles</li>
+                                <li>Infraestructura productiva</li>
+                            </ul>
+                            <button class="btn btn-dbo" onclick="openReport('productivo')">
+                                <i class="fas fa-chart-bar me-2"></i>Ver Informe Completo
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6">
+                    <div class="dbo-card">
+                        <div class="dbo-card-header">
+                            <div class="dbo-card-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                        </div>
+                        <div class="dbo-card-body">
+                            <h4>Diagnóstico Social</h4>
+                            <p>Estudio de las necesidades, capacidades y organización de los productores vitivinícolas locales.</p>
+                            <ul>
+                                <li>Caracterización de productores</li>
+                                <li>Nivel de asociatividad</li>
+                                <li>Conocimientos técnicos</li>
+                                <li>Condiciones socioeconómicas</li>
+                                <li>Aspiraciones y expectativas</li>
+                            </ul>
+                            <button class="btn btn-dbo" onclick="openReport('social')">
+                                <i class="fas fa-chart-pie me-2"></i>Ver Informe Completo
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6">
+                    <div class="dbo-card">
+                        <div class="dbo-card-header">
+                            <div class="dbo-card-icon">
+                                <i class="fas fa-wine-glass-alt"></i>
+                            </div>
+                        </div>
+                        <div class="dbo-card-body">
+                            <h4>Diagnóstico Enológico</h4>
+                            <p>Evaluación de procesos de vinificación y calidad de productos elaborados en la región.</p>
+                            <ul>
+                                <li>Procesos de vinificación</li>
+                                <li>Control de calidad aplicado</li>
+                                <li>Características organolépticas</li>
+                                <li>Potencial de mejora</li>
+                                <li>Oportunidades de mercado</li>
+                            </ul>
+                            <button class="btn btn-dbo" onclick="openReport('enologico')">
+                                <i class="fas fa-chart-line me-2"></i>Ver Informe Completo
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. CARRUSEL DE EQUIPO -->
+    <section id="equipo" class="team-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Nuestro Equipo responsable del proyecto de DBO - UPSJB - EPIEV</h2>
+                <p>Docentes y Estudiantes comprometidos con el desarrollo vitivinícola comunitario</p>
+            </div>
+            
+            <div id="teamCarousel" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#teamCarousel" data-bs-slide-to="0" class="active" style="background-color: var(--wine-red);"></button>
+                    <button type="button" data-bs-target="#teamCarousel" data-bs-slide-to="1" style="background-color: var(--wine-red);"></button>
+                </div>
+                
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-4 col-md-6">
+                                <div class="team-member">
+                                    <div class="team-member-img">
+                                        <img src="img/samuel.jpg" alt="Coordinadora">
+                                    </div>
+                                    <h5>Ysac Samuel Flores Mendoza</h5>
+                                    <p class="role">Lider del Proyecto</p>
+                                    <p>viticultura sostenible</p>
+                                    <span class="specialty">Internet de las Cosas</span>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6">
+                                <div class="team-member">
+                                    <div class="team-member-img">
+                                        <img src="img/lovon.jpg" alt="Enólogo">
+                                    </div>
+                                    <h5>Julio Hipolito Soto Lovon</h5>
+                                    <p class="role">Responsable Área Enológica</p>
+                                    <p>Experto en procesos de vinificación y análisis sensorial de vinos</p>
+                                    <span class="specialty">Enología Técnica</span>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6">
+                                <div class="team-member">
+                                    <div class="team-member-img">
+                                        <img src="img/lord.jpg" alt="Analista">
+                                    </div>
+                                    <h5>Edgar Hugo Capquequi Huarachi</h5>
+                                    <p class="role">Analista de Diagnóstico Social</p>
+                                    <p>Investigadora en desarrollo comunitario y asociatividad rural</p>
+                                    <span class="specialty">Desarrollo Social</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="carousel-item">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-4 col-md-6">
+                                <div class="team-member">
+                                    <div class="team-member-img">
+                                        <img src="img/pana.jpg" alt="Agrónomo">
+                                    </div>
+                                    <h5>Angel Huaman de la Cruz</h5>
+                                    <p class="role">Especialista en Viticultura</p>
+                                    <p>Ingeniero agrónomo enfocado en manejo de viñedos y sanidad vegetal</p>
+                                    <span class="specialty">Manejo de Viñedos</span>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6">
+                                <div class="team-member">
+                                    <div class="team-member-img">
+                                        <img src="img/diego.jpg" alt="Investigadora">
+                                    </div>
+                                    <h5>Diego Candela Ramos</h5>
+                                    <p class="role">Responsable capacitador estudiantil</p>
+                                    <p>Estudiante de enologia y viticultura</p>
+                                    <span class="specialty">Estudiante</span>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6">
+                                <div class="team-member">
+                                    <div class="team-member-img">
+                                        <img src="img/tasayco.jpg" alt="Analista">
+                                    </div>
+                                    <h5>Wlilliam Tasayco Bacigalupo</h5>
+                                    <p class="role">Responsable capacitador estudiantils</p>
+                                    <p>Estudiante de enologia y viticultura</p>
+                                    <span class="specialty">Estudiante</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <button class="carousel-control-prev" type="button" data-bs-target="#teamCarousel" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon"></span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#teamCarousel" data-bs-slide="next">
+                    <span class="carousel-control-next-icon"></span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. CONTADOR DE IMPACTO -->
+    <section id="impacto" class="impact-section">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="impact-box text-center">
+                        <div class="impact-icon">
+                            <i class="fas fa-hand-holding-heart"></i>
+                        </div>
+                        <h3 class="mb-4" style="font-family: 'Playfair Display', serif; font-size: 2.5rem;">Impacto del Proyecto</h3>
+                        <div class="row">
+                            <div class="col-md-4 mb-4 mb-md-0">
+                                <div class="impact-number" id="visitCounter">0</div>
+                                <div class="impact-label">Vistas</div>
+                            </div>
+                            <div class="col-md-4 mb-4 mb-md-0">
+                                <div class="impact-number">20</div>
+                                <div class="impact-label">Productores Beneficiados</div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="impact-number">5</div>
+                                <div class="impact-label">Talleres Teórico-Práctico</div>
+                            </div>
+                        </div>
+                        <p class="impact-description mt-4">
+                            <i class="fas fa-quote-left me-2"></i>
+                            Transformando realidades a través del conocimiento enológico y la responsabilidad social
+                            <i class="fas fa-quote-right ms-2"></i>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. FOOTER -->
+    <footer id="contacto" class="footer">
+        <div class="container">
+            <div class="row">
+                <!-- Columna 1: Docente y Asignatura -->
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <h5><i class="fas fa-university me-2"></i>Docentes:</h5>
+                    <ul>
+                        <li><i class="fas fa-chalkboard-teacher"></i><strong>Docente:</strong> Mg. Ysac Samuel Flores Mendoza</li>
+                        <li><i class="fas fa-chalkboard-teacher"></i><strong>Docente:</strong> Ing. Julio Hipolito Soto Lovon</li>
+                        <li><i class="fas fa-chalkboard-teacher"></i><strong>Docente:</strong> Ing. Edgar Hugo Capquequi Huarachi</li>
+                        <li><i class="fas fa-chalkboard-teacher"></i><strong>Docente:</strong> Mg. Angel Huaman De La Cruz</li>
+                        <li><i class="fas fa-book"></i><strong>Área:</strong> Responsabilidad Social Universitaria - RSU</li>
+                        <li><i class="fas fa-flask"></i><strong>Escuela ejecutora:</strong> Ingeniería en Enología y Viticultura</li>
+                        <li><i class="fas fa-calendar-alt"></i><strong>Año Académico:</strong> 2025</li>
+                        <li><i class="fas fa-map-marker-alt"></i><strong>Zona de Intervención:</strong> Valle de Cañete</li>
+                    </ul>
+                    
+                </div>
+                
+                <!-- Columna 2: Logo Universidad -->
+                <div class="col-lg-4 col-md-6 mb-4 text-center">
+                    <h5><i class="fas fa-landmark me-2"></i>Institución</h5>
+                    <img src="img/Upsjb Logo horizontal.jpg" alt="Logo Universidad" class="university-logo">
+                    <p class="mt-3" style="font-weight: 600; font-size: 1.1rem;">Universidad Privada San Juan Bautista</p>
+                    <p style="color: var(--gold-accent);">Facultad de Ingenierías</p>
+                    <p style="font-size: 0.9rem;">Formando profesionales comprometidos con el desarrollo sostenible del sector vitivinícola - Formando el camino</p>
+                </div>
+                
+                <!-- Columna 3: Integrantes del Equipo -->
+                <div class="col-lg-4 col-md-12 mb-4">
+                    <h5><i class="fas fa-users-cog me-2"></i>Equipo Estudiantil</h5>
+                    <ul>
+                        <li><i class="fas fa-user-graduate"></i>Candela Ramos Diego Fernándo </li>
+                        <li><i class="fas fa-user-graduate"></i>Tasayco Bacigalupo William</li>
+                        <li><i class="fas fa-user-graduate"></i>García Mendez Tania Felícita </li>
+                        <li><i class="fas fa-user-graduate"></i>Huamán Rodriguez Melany</li>
+                        <li><i class="fas fa-user-graduate"></i>Romero Salcedo Jesús </li>
+                        <li><i class="fas fa-user-graduate"></i>Martinez Quispe,Mario Joaquin</li>
+                    </ul>
+                    <div class="mt-4 p-3" style="background: rgba(255,255,255,0.05); border-radius: 10px; border-left: 4px solid var(--gold-accent);">
+                        <p style="margin: 0; font-size: 0.9rem;"><i class="fas fa-envelope me-2"></i>ysac.flores@upsjb.edu.pe</p>
+                        <p style="margin: 10px 0 0 0; font-size: 0.9rem;"><i class="fas fa-phone me-2"></i>+51 922 924 888</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p style="font-size: 1.1rem; font-weight: 600;">🍇 Proyecto de Responsabilidad Social Universitaria - Diagnóstico Vitivinícola Comunitario 🍷</p>
+                <p>&copy; 2025 Ingeniería en Enología y Viticultura - Todos los derechos reservados</p>
+                <p style="font-style: italic; color: var(--gold-accent);">"Cultivando conocimiento, cosechando desarrollo social"</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Script personalizado -->
+    <script>
+        // Función para abrir reportes DBO en Power BI
+        function openReport(reportType) {
+            // Reemplazar con las URLs reales de tus reportes de Power BI
+            const reportUrls = {
+                'productivo': 'https://app.powerbi.com/view?r=REPORTE_PRODUCTIVO',
+                'social': 'https://app.powerbi.com/view?r=REPORTE_SOCIAL',
+                'enologico': 'https://app.powerbi.com/view?r=REPORTE_ENOLOGICO'
+            };
+            
+            const reportNames = {
+                'productivo': 'Diagnóstico Productivo',
+                'social': 'Diagnóstico Social',
+                'enologico': 'Diagnóstico Enológico'
+            };
+            
+            // Abrir en nueva pestaña
+            window.open(reportUrls[reportType], '_blank');
+            
+            // Mensaje opcional
+            console.log('Abriendo ' + reportNames[reportType] + '...');
+        }
+        
+        // Contador de visitas (usando LocalStorage)
+        function updateVisitCounter() {
+            let visits = localStorage.getItem('rsuVisitCount');
+            
+            if (visits === null) {
+                visits = 0;
+            }
+            
+            visits = parseInt(visits) + 1;
+            localStorage.setItem('rsuVisitCount', visits);
+            
+            animateCounter(visits);
+        }
+        
+        // Animación del contador
+        function animateCounter(target) {
+            let current = 0;
+            const increment = target / 60;
+            const counter = document.getElementById('visitCounter');
+            
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    counter.textContent = target.toLocaleString();
+                    clearInterval(timer);
+                } else {
+                    counter.textContent = Math.floor(current).toLocaleString();
+                }
+            }, 25);
+        }
+        
+        // Smooth scroll para links del navbar
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+        
+        // Efecto de transparencia en navbar al hacer scroll
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.style.background = 'linear-gradient(135deg, rgba(74, 30, 35, 0.97), rgba(114, 47, 55, 0.97))';
+                navbar.style.boxShadow = '0 8px 30px rgba(0,0,0,0.3)';
+            } else {
+                navbar.style.background = 'linear-gradient(135deg, rgb(74, 30, 35), rgb(114, 47, 55))';
+                navbar.style.boxShadow = '0 4px 20px rgba(0,0,0,0.2)';
+            }
+        });
+        
+        // Inicializar contador al cargar la página
+        window.addEventListener('load', updateVisitCounter);
+        
+        // Efecto parallax sutil en el carrusel
+        window.addEventListener('scroll', function() {
+            const scrolled = window.pageYOffset;
+            const parallax = document.querySelector('.carousel-inner');
+            if (parallax) {
+                parallax.style.transform = 'translateY(' + (scrolled * 0.3) + 'px)';
+            }
+        });
+    </script>
+</body>
+</html>
